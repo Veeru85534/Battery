@@ -1,0 +1,41 @@
+﻿<form asp-controller="Home" asp-action="CsvUpload" method="post" enctype="multipart/form-data">
+    <label class="m-1">
+        <b>Select CSV File To Upload(1st Round Test)</b>
+    </label><br />
+    <input required type="file" name="postedFile">
+    <input type="submit" id="uploadFile" />
+    <br />
+    <br />
+    <span class="blink text-danger">Please wait file is uploading..!</span>
+    <span class="text-success">@TempData["Message"]</span>
+    <span class="text-danger">@TempData["Error"]</span>
+</form>
+<br />
+<br />
+<form asp-controller="Home" asp-action="CsvUpload2NdRound" method="post" enctype="multipart/form-data">
+    <label class="m-1">
+        <b>Select CSV File To Upload(2nd Round Test)</b>
+    </label><br />
+    <input required type="file" name="formFile2">
+    <input type="submit" />
+    <br />
+    <br />
+    <span class="text-success">@TempData["Message"]</span>
+    <span class="text-danger">@TempData["Error"]</span>
+</form>
+
+
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $('.blink').hide();
+    $("#uploadFile").click(function () {
+        function blink_text() {
+            $('.blink').fadeOut(500);
+            $('.blink').fadeIn(500);
+        }
+        setInterval(blink_text, 1000);
+    });
+</script>

@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Li_ionBattery.Models.Battery>
+
+
+<style>
+    .tableFixHead {
+        overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
+        height: 500px; /* gives an initial height of 200px to the table */
+    }
+
+        .tableFixHead thead tr th {
+            position: sticky; /* make the table heads sticky */
+            top: 0px; /* table head will be placed from the top of the table and sticks to it */
+        }
+        .tableFixHead1 {
+            position: sticky; /* make the table heads sticky */
+            top: 32px; /* table head will be placed from the top of the table and sticks to it */
+        }
+
+    table {
+        border-collapse: collapse; /* make the table borders collapse to each other */
+        width: 100%;
+    }
+
+    
+    td {
+        padding: 8px 16px;
+        border: 1px solid #ccc;
+    }
+
+    th {
+        background: #eee;
+    }
+</style>
+
+
+<div class="tableFixHead">
+    <table class="table table-striped table-sm table-bordered border-3 border-dark table-hover">
+        <thead class="bg-opacity-50 bg-success">
+            <tr>
+                <th class="bg-opacity-50 bg-success" rowspan="2">Battery No</th>
+                <th class="text-center bg-opacity-50 bg-success" colspan="4">Round 1</th>
+                <th class="text-center bg-opacity-50 bg-success" colspan="4">Rount 2</th>
+                <th class="text-center bg-opacity-50 bg-success" colspan="2">Battery Variations</th>
+            </tr>
+            <tr class="tableFixHead1">
+                <th class="text-end bg-opacity-50 bg-success">Resistance</th>
+                <th class="text-end bg-opacity-50 bg-success">Voltage</th>
+                <th class="text-end bg-opacity-50 bg-success">Temperature</th>
+                <th class="text-end bg-opacity-50 bg-success">DateTime</th>
+                <th class="text-end bg-opacity-50 bg-success">Resistance</th>
+                <th class="text-end bg-opacity-50 bg-success">Voltage</th>
+                <th class="text-end bg-opacity-50 bg-success">Temperature</th>
+                <th class="text-end bg-opacity-50 bg-success">DateTime</th>
+                <th class="text-end bg-opacity-50 bg-success">Resistance</th>
+                <th class="text-end bg-opacity-50 bg-success">Voltage</th>
+            </tr>
+
+
+
+        </thead>
+        @foreach (var Iteam in Model)
+        {
+            <tr>
+                <td>@Iteam.BatteryId</td>
+                <td class="text-end">@Iteam.Resistance1?.ToString("0.####")</td>
+                <td class="text-end">@Iteam.Voltage1?.ToString("0.####")</td>
+                <td class="text-end">@Iteam.Temperature1?.ToString("0.####")</td>
+                <td class="text-end">@Iteam.DateTime1</td>
+                <td class="text-end">@Iteam.Resistance2?.ToString("0.####")</td>
+                <td class="text-end">@Iteam.Voltage2?.ToString("0.####")</td>
+                <td class="text-end">@Iteam.Temperature2?.ToString("0.####")</td>
+                <td class="text-end">@Iteam.DateTime2</td>
+                <th class="text-end">
+                    @{
+                        var TotalResistance = Iteam.Resistance1 - Iteam.Resistance2;
+                    }
+                    @TotalResistance?.ToString("0.####")
+                </th>
+                <th class="text-end">
+                    @{
+                        var TotalVoltage = Iteam.Voltage1 - Iteam.Voltage2;
+                    }
+                    @TotalVoltage?.ToString("0.####")
+                </th>
+            </tr>
+        }
+    </table>
+</div>
+
